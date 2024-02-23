@@ -1,12 +1,12 @@
 <template>
-    dashboard
+    users
 </template>
 
-<script setup lang="ts">
+<script setup>
 definePageMeta({
     layout: 'dashboard'
 })
 useHead({
-    title: 'dashboard'
+    title: 'users'
 })
 </script>
