@@ -4,14 +4,13 @@
     </h1>
     <UBreadcrumb divider="/" :links="[{ label: 'Home', to: '/dashboard' }]" />
     <div>
-
         <div class="my-4">
             <div class="flex items-center justify-center" v-if="isLoading">
                 <UProgress animation="carousel" class="max-w-64" />
             </div>
             <ClientOnly v-else>
                 <apexchart width="100%" height="400" type="bar" :options="options" :series="series"
-                    class="bg-transparent max-w-[54em]"></apexchart>
+                    class="bg-transparent max-w-[48em]"></apexchart>
             </ClientOnly>
         </div>
     </div>
