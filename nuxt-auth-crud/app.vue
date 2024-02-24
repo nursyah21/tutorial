@@ -1,9 +1,7 @@
 <template>
-  <UContainer class="my-4">
-    <NuxtLayout>
+  <NuxtLayout>
       <NuxtPage />
-    </NuxtLayout>
-  </UContainer>
+  </NuxtLayout>
 </template>
 
 <script setup lang="ts">
