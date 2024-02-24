@@ -5,10 +5,7 @@
             <UInput icon="i-heroicons-magnifying-glass-20-solid" variant="outline" placeholder="Search..." />
         </div>
 
-        <div class="flex items-center gap-x-2">
-            <div class="relative">
-                <UAvater src="https://avatars.githubusercontent.com/u/739984?v=4" alt="Avatar" />
-            </div>
+        <div class="flex items-center gap-x-4">
             <ULink to="/dashboard/settings">
                 <div class="flex items-center gap-x-1 hover:opacity-80 transition-opacity duration-600">
                     <div class="flex flex-col">

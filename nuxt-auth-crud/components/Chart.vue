@@ -1,19 +1,13 @@
 <template>
-    <div>
-        apex chart
-
-        <div class="h-screen flex items-center justify-center" v-if="isLoading">
-            <UProgress animation="carousel" class="max-w-64"/>
-        </div>
-        <ClientOnly>
-            <apexchart width="500" type="bar" :options="options" :series="series"></apexchart>
-        </ClientOnly>
-    </div>
+    <ClientOnly>
+        <apexchart width="500" type="bar" :options="options" :series="series"></apexchart>
+    </ClientOnly>
 </template>
-  
+
 <script setup>
 const colorMode = useColorMode()
 const isLoading = ref(true)
+
 const options = ref({
     chart: {
         id: 'vuechart-example'
@@ -26,22 +20,20 @@ const series = ref([{
     name: 'series-1',
     data: [30, 40, 45, 50, 49, 60, 70, 91]
 }])
-
-const updateChartMode = () => {
-    // console.log(colorMode.value)
+function updateColorMode() {
+    console.log(colorMode)
     options.value = {
         ...options.value,
+        // @ts-ignore
         theme: {
             mode: colorMode.value
         }
     }
-}
-
-
-watch(colorMode, () => {
-    updateChartMode()
     isLoading.value = false
+}
+watch(colorMode, () => {
+    updateColorMode()
 })
-
-
+updateColorMode()
 </script>
+  

@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout>
-      <NuxtPage />
+    <NuxtPage />
   </NuxtLayout>
 </template>
 
@@ -10,4 +10,5 @@ useSeoMeta({
     return title ? `${title} | Nuxt Auth` : 'Nuxt Auth'
   },
 })
+
 </script>
