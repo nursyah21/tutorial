@@ -7,7 +7,7 @@
 
 <script setup lang="ts">
 import axios from 'axios'
-const config = useRuntimeConfig()
+// const config = useRuntimeConfig()
 
 useSeoMeta({
   titleTemplate: (title) => {
@@ -15,6 +15,8 @@ useSeoMeta({
   },
 })
 
-
-axios.defaults.baseURL = config.public.axios
+onMounted(() => {
+  axios.defaults.baseURL = window.location.origin
+})
+// axios.defaults.baseURL = config.public.axios
 </script>
