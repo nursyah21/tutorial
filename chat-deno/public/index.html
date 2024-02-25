@@ -1,46 +1,95 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Chat app with Deno</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="app.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 
 <body>
-
-  <div class="chat-container">
-    <div class="chat-sidebar">
-      <h3>Room users (<span id="chatUsersCount"></span>)</h3>
-      <div id="chatUsers" class="chat-users">
-      </div>
-    </div>
-    <div class="chat-main">
-      <div class="chat-header">
-        <div id="groupName" class="group-name">
-          Javascript
+    <div style="text-align: center">
+        <div>
+            <b>Users</b>
+            <hr />
+            <div id="users"></div>
+            <hr class="visible-xs visible-sm" />
         </div>
         <div>
-          <button id="leaveGroupBtn">Leave group</button>
+            <input id="data" placeholder="send message" />
+            <hr />
+            <div id="conversation"></div>
         </div>
-      </div>
-      <div id="chatMessages" class="chat-messages">
-      </div>
-      <div class="chat-footer">
-        <form id="messageSendForm">
-          <input id="messageInput" type="text" placeholder="Type message and hit enter">
-          <button>Send</button>
-        </form>
-      </div>
     </div>
-  </div>
-  </div>
+    <script>
+        const PORT = 3001
+        const myUsername = prompt("Please enter your name") || "Anonymous";
 
-  <script src="client.js"></script>
+        // Get the protocol (http or https) from the current page's URL
+        const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+
+        // Construct the WebSocket URL using the current host and the desired path
+        const socket = new WebSocket(
+            `${protocol}//localhost:${PORT}/start_web_socket?username=${myUsername}`
+        );
+
+        // const ws = new WebSocket(`ws://localhost:${PORT}/wss`);
+        // ws.onopen = () => console.log("Connected to server");
+        // ws.onmessage = (m) => {
+        //     console.log("Got message from server: ", m.data);
+        //     ws.send(`Some message ${crypto.randomUUID()}`);
+        //     const newMessage = document.createElement('p')
+        //     newMessage.textContent = `message: ${m.data}`
+
+        //     message.appendChild(newMessage)
+        // };
+        // // ws.onclose = () => console.log("Disconnected from server");
+        // let message = document.getElementById('message')
+
+        socket.onmessage = (m) => {
+            const data = JSON.parse(m.data);
+
+            switch (data.event) {
+                case "update-users":
+                    // refresh displayed user list
+                    let userListHtml = "";
+                    for (const username of data.usernames) {
+                        userListHtml += `<div> ${username} </div>`;
+                    }
+                    document.getElementById("users").innerHTML = userListHtml;
+                    break;
+
+                case "send-message":
+                    // display new chat message
+                    addMessage(data.username, data.message);
+                    break;
+            }
+        };
+
+        function addMessage(username, message) {
+            // displays new message
+            document.getElementById(
+                "conversation"
+            ).innerHTML += `<b> ${username} </b>: ${message} <br/>`;
+        }
+
+
+        window.onload = () => {
+            // when the client hits the ENTER key
+            document.getElementById("data").addEventListener("keypress", (e) => {
+                if (e.key === "Enter") {
+                    const inputElement = document.getElementById("data");
+                    var message = inputElement.value;
+                    inputElement.value = "";
+                    socket.send(
+                        JSON.stringify({
+                            event: "send-message",
+                            message: message,
+                        })
+                    );
+                }
+            });
+        };
+    </script>
 </body>
 
 </html>

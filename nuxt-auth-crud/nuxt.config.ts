@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["@nuxt/ui", "@pinia/nuxt"],
+  modules: ["@nuxt/ui", "@pinia/nuxt", "@pinia-plugin-persistedstate/nuxt"],
   nitro: {
     plugins: ["~/server/plugins/mongodb.ts"],
   },
@@ -12,10 +12,4 @@ export default defineNuxtConfig({
       axios: "axios uri",
     },
   },
-  imports: {
-    dirs: ["./stores"],
-  },
-  // pinia: {
-  //   autoImports: ["defineStore", "acceptHMRUpdate"],
-  // },
 });

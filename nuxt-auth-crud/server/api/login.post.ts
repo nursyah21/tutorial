@@ -32,5 +32,5 @@ export default defineEventHandler(async (event) => {
     expiresIn: "14d",
   });
 
-  return { sign };
+  return sign;
 });

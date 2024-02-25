@@ -12,7 +12,12 @@
                 </UFormGroup>
 
                 <UButton type="submit" class="w-full justify-center" :color="useColorPrimary()">
-                    Login
+                    <template v-if="isSubmit">
+                        <UIcon name="i-eos-icons-loading" /> Please wait...
+                    </template>
+                    <template v-else>
+                        Login
+                    </template>
                 </UButton>
                 <template #fallback>
                     <Skeleton />
@@ -25,6 +30,7 @@
 <script setup lang="ts">
 import z from 'zod'
 import type { FormSubmitEvent } from '#ui/types'
+import axios from 'axios';
 
 definePageMeta({
     layout: 'auth'
@@ -44,9 +50,26 @@ const state = reactive({
     email: undefined,
     password: undefined
 })
+const isSubmit = ref(false)
+// @ts-ignore
+const userStore = useStoreUser()
 
 async function onSubmit(event: FormSubmitEvent<any>) {
-    // Do something with event.data
-    console.log(event.data)
+    const data = event.data
+    isSubmit.value = true
+    const submitData = event.data
+
+    axios.post('/api/login', submitData).then(e => e.data)
+        .then(async e => {
+            userStore.setToken(e as string);
+            await new Promise(r => setTimeout(r, 1500))
+            navigateTo({ path: '/dashboard', replace: true })
+
+        })
+        .catch(e => {
+            console.log(e)
+            const error = e?.response?.data?.message ?? 'An unknown error occurred.'
+            useToastError(error)
+        }).finally(() => { isSubmit.value = false })
 }
 </script>

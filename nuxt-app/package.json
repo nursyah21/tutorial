@@ -10,21 +10,11 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@nuxt/ui": "^2.14.1",
     "@pinia/nuxt": "^0.5.1",
-    "apexcharts": "^3.46.0",
-    "axios": "^1.6.7",
-    "h3-zod": "^0.5.3",
-    "jsonwebtoken": "^9.0.2",
-    "jwt": "^0.2.0",
-    "mongodb": "^6.3.0",
-    "mongoose": "^8.2.0",
     "nuxt": "^3.10.3",
     "pinia": "^2.1.7",
     "vue": "^3.4.19",
-    "vue-router": "^4.3.0",
-    "vue3-apexcharts": "^1.5.2",
-    "zod": "^3.22.4"
+    "vue-router": "^4.3.0"
   },
   "devDependencies": {
     "@pinia-plugin-persistedstate/nuxt": "^1.2.0"

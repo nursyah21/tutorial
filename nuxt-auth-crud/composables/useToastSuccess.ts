@@ -7,6 +7,6 @@ export default function(text:string) {
         title: text,
         icon: 'i-ph-check',
         color: 'green',
-        timeout: 5000
+        timeout: 4000
     })
 }

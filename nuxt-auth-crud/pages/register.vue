@@ -67,9 +67,9 @@ async function onSubmit(event: FormSubmitEvent<any>) {
     const submitData = event.data
 
     axios.post('/api/register', submitData).then(e => e.data)
-        .then(e => {
-            console.log(e)
+        .then(async e => {
             useToastSuccess('success create account')
+            await new Promise(r => setTimeout(r, 1500))
             navigateTo({path: '/login', replace: true})
         })
         .catch(e => {

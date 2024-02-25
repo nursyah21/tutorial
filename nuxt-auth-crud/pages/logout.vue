@@ -7,12 +7,18 @@
 
 <script setup lang="ts">
 
-
 definePageMeta({
     layout: 'auth'
 })
 useSeoMeta({
     title: 'login'
+})
+onMounted(async () => {
+    const userStore = useStoreUser()
+    await new Promise(r => setTimeout(r, 2000))
+    userStore.resetToken()
+    navigateTo('/')
+
 })
 
 </script>
