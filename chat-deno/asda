@@ -1,0 +1,11 @@
+import { load } from "https://deno.land/std@0.217.0/dotenv/mod.ts";
+import mongoose from "npm:mongoose@^8.2";
+const env = await load();
+
+export const connectDb = () =>  mongoose.connect(env["MONGODB_URI"]);
+
+const messageSchema = new mongoose.Schema({
+  message: String,
+}, { timestamps: true });
+
+export const messageModel = mongoose.model("Message", messageSchema);
