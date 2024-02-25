@@ -19,6 +19,9 @@
                         Login
                     </template>
                 </UButton>
+                <div class="mt-1 flex justify-center">
+                    <ULink to="/register" class="text-sm underline hover:no-underline">create an account </ULink>
+                </div>
                 <template #fallback>
                     <Skeleton />
                 </template>

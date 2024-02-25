@@ -23,7 +23,9 @@
                         Register
                     </template>
                 </IButton>
-
+                <div class="mt-1 flex justify-center">
+                    <ULink to="/login" class="text-sm underline hover:no-underline">already have account</ULink>
+                </div>
             </UForm>
             <template #fallback>
                 <Skeleton />
@@ -70,7 +72,7 @@ async function onSubmit(event: FormSubmitEvent<any>) {
         .then(async e => {
             useToastSuccess('success create account')
             await new Promise(r => setTimeout(r, 1500))
-            navigateTo({path: '/login', replace: true})
+            navigateTo({ path: '/login', replace: true })
         })
         .catch(e => {
             console.log(e)
