@@ -2,18 +2,22 @@
     <UCard class="max-w-sm w-full bg-white/75 dark:bg-white/5 backdrop-blur">
         <h1 class="text-4xl font-bold text-center mb-2">Login</h1>
         <UForm :schema="schema" :state="state" class="space-y-4" @submit="onSubmit">
-            <UFormGroup label="Email" name="email">
-                <UInput v-model="state.email" />
-            </UFormGroup>
+            <ClientOnly>
+                <UFormGroup label="Email" name="email">
+                    <UInput v-model="state.email" />
+                </UFormGroup>
 
-            <UFormGroup label="Password" name="password">
-                <UInput v-model="state.password" type="password" />
-            </UFormGroup>
+                <UFormGroup label="Password" name="password">
+                    <UInput v-model="state.password" type="password" />
+                </UFormGroup>
 
-            <UButton type="submit" class="w-full justify-center">
-                Login
-            </UButton>
-
+                <UButton type="submit" class="w-full justify-center" :color="useColorPrimary()">
+                    Login
+                </UButton>
+                <template #fallback>
+                    <Skeleton />
+                </template>
+            </ClientOnly>
         </UForm>
     </UCard>
 </template>
@@ -29,7 +33,6 @@ useSeoMeta({
     title: 'login'
 })
 
-
 const schema = z.object({
     email: z.string().email('Invalid email'),
     password: z.string().min(8, 'Must be at least 8 characters')
@@ -41,7 +44,6 @@ const state = reactive({
     email: undefined,
     password: undefined
 })
-
 
 async function onSubmit(event: FormSubmitEvent<any>) {
     // Do something with event.data

@@ -16,9 +16,7 @@
                 </div>
             </ULink>
 
-
-
-            <UChip :show="notification.show" :text="notification.count" size="2xl">
+            <UChip :show="notification.show" :text="notification.count" size="2xl" :color="colorPrimary">
                 <UButton icon="i-heroicons-bell" color="gray" />
             </UChip>
 
@@ -31,15 +29,20 @@
 </template>
 
 <script setup>
+const colorPrimary = ref(useColorPrimary())
+// console.log(colorPrimary)
 const notification = {
     show: true,
     count: 3
 }
 
 const isOpenExit = ref(false)
-
 function logout() {
-    console.log('logout')
+    // console.log('logout')
 }
 
+watch(useColorMode(), ()=>{
+    colorPrimary.value = useColorPrimary()
+    // console.log(colorPrimary)
+})
 </script>

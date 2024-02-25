@@ -38,9 +38,9 @@
         <h1 class="text-sm opacity-50">max size 500kb</h1>
         <UDivider />
         <div>
-            <UButton type="submit">
+            <IButton type="submit">
                 Save Changes
-            </UButton>
+            </IButton>
         </div>
 
     </div>
@@ -76,14 +76,8 @@ function handleInputAvatar(event: any) {
     const file = event.target.files[0];
     const maxSize = 1024 * 1024 / 2 // 512kb
     if (file.size > maxSize) {
-        toast.add({
-            title: 'File size exceeds the limit',
-            icon: 'i-ph-warning-circle',
-            color: 'red',
-            timeout: 5000
-        })
+        useToastError('File size exceeds the limit')
         event.target.value = ''
-
     }
 }
 
