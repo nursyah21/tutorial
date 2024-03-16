@@ -40,6 +40,7 @@ const state = reactive({
     password: ''
 })
 const isSubmit = ref(false)
+const isFinish = ref(false)
 async function onSubmit(event: FormSubmitEvent<any>) {
 
     const submitData = event.data
@@ -48,13 +49,12 @@ async function onSubmit(event: FormSubmitEvent<any>) {
         method: 'post',
         body: submitData
     }).then(async e => {
-        // useStore().setToken(e)
+        useStore().setToken(e)
+        navigateTo('/')
     }).catch(e => {
         toastError(e?.response?.statusText)
-    }).finally(() => {
         isSubmit.value = false
     })
-
 
 }
 </script>

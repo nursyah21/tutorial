@@ -11,6 +11,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     mongodbUri: 'uri',
-    secretAuth: 'secret'
+    secretAuth: 'secret',
+    brevoKeys: 'brevo',
+    imagekitPrivate: 'imagekit'
   }
 })

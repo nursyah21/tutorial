@@ -1,5 +1,4 @@
 // @ts-ignore
-import jwt from 'jsonwebtoken'
 import { user } from "~/schema/user";
 import { jwtVerify } from '~/utils/jwt';
 // import { jwtSign, jwtVerify } from "~/utils/jwt";
