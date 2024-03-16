@@ -1,7 +1,8 @@
 <template>
     <div class="flex relative min-h-screen lg:flex">
+        
         <aside
-            class="sm:flex flex-col w-[12em] h-screen px-5 py-8 overflow-y-auto  border-r  dark:border-gray-700 hidden">
+            class="sm:flex flex-col w-[16rem] h-screen px-5 py-8 overflow-y-auto  border-r  dark:border-gray-700 hidden">
             <div class="mt-6">
                 <nav class="-mx-3 space-y-6 ">
                     <div class="space-y-3 ">
@@ -18,8 +19,8 @@
                 </nav>
             </div>
         </aside>
-
-        <USlideover v-model="isOpen" side="left" class="max-w-xs sm:hidden">
+        
+        <USlideover v-model="isOpen" side="left" class="max-w-[16rem] sm:hidden">
             <div class="p-4">
                 <div class="space-y-3 ">
                     <label class="px-3 text-xs text-gray-500 uppercase">Menu</label>
@@ -34,9 +35,7 @@
                 </div>
             </div>
         </USlideover>
-
         <main class="flex-1 pb-12 space-y-6 overflow-y-auto lg:h-screen md:space-y-8">
-
             <header class="flex items-center justify-between sm:justify-end h-20 px-6 border-b w-full ">
 
 
@@ -62,9 +61,8 @@
 
 
             </header>
-            <UContainer>
+
                 <slot></slot>
-            </UContainer>
 
         </main>
 

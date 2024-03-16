@@ -6,9 +6,6 @@ export default defineNuxtRouteMiddleware(async to=>{
 
     if(to.path === '/') return navigateTo('/dashboard')
     
-    if(to.path.startsWith('/dashboard')){
-        console.log('path', to.path, 'data:', data)
-    }
 
     // @ts-ignore
     if(to.path.startsWith('/dashboard') && !data?.email){

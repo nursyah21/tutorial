@@ -12,7 +12,6 @@ const imagekit = new ImageKit({
 
 export default defineEventHandler(async (event) => {
   const data = await readMultipartFormData(event);
-  console.log();
 
   // @ts-ignore
   let res = imagekit.upload({ file: data[0].data, fileName: data[0].filename });

@@ -17,6 +17,7 @@
     "nuxt": "^3.10.1"
   },
   "dependencies": {
+    "ably": "^1.2.49",
     "imagekit": "^5.0.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.2.1",

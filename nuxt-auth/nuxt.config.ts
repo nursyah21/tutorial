@@ -13,6 +13,9 @@ export default defineNuxtConfig({
     mongodbUri: 'uri',
     secretAuth: 'secret',
     brevoKeys: 'brevo',
-    imagekitPrivate: 'imagekit'
+    imagekitPrivate: 'imagekit',
+    public:{
+      ablyKey: ''
+    }
   }
 })
