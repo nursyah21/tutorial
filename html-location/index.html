@@ -1,0 +1,66 @@
+<!-- demo: https://possible-line.surge.sh -->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/geolib@3.3.4/lib/index.min.js"></script>
+</head>
+
+<body>
+    <button onclick="getLocation()">Get My Location</button>
+    <div id="location"></div>
+    <input type="text" id="address" value="">
+    <div id="location-address"></div>
+    <div id="location-address2"></div>
+
+    <div style="margin-top: 6px;">
+        <a href="https://www.google.com/maps" id="a-maps">Open Google Maps</a>
+    </div>
+
+
+    <script>
+        let locationDoc = document.querySelector('#location');
+        let addressInput = document.querySelector('#address');
+        let addressDoc = document.querySelector('#location-address');
+        let address2Doc = document.querySelector('#location-address2');
+        let Amaps = document.querySelector('#a-maps');
+        let maps = 'https://www.google.com/maps/dir/'
+        // let maps = 'https://www.google.com/maps/dir/-7.3870747,+112.7126789/-7.3139907,112.7232072'
+
+        // locationDoc.innerHTML = 'hai'
+        function getLocation() {
+            maps = 'https://www.google.com/maps/dir/'
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    let x1 = position.coords.latitude, y1 = position.coords.longitude
+                    let i = addressInput.value.split(',')
+                    let x2 = Number(i[0]), y2 = Number(i[1])
+
+                    locationDoc.innerHTML = `${x1}, ${y1}`;
+                    let distance = geolib.getDistance(
+                        { latitude: x1, longitude: y1 },
+                        { latitude: x2, longitude: y2 },
+                    )
+
+                    maps += isNaN(distance) ? `${x1},${y1}` : `${x1},${y1}/${x2},${y2}`
+
+                    distance = isNaN(distance) ? ''
+                        : distance > 1000 ? (distance / 1000).toFixed(2) + 'km'
+                        : distance + 'm'
+
+                    addressDoc.innerHTML = distance ? "distance is: " + distance : ''
+                    console.log(isNaN(distance), distance)
+
+
+                    Amaps.href = maps
+                });
+            } else {
+                locationDoc.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+    </script>
+</body>
+
+</html>
