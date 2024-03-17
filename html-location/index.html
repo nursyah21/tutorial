@@ -26,12 +26,12 @@
         let addressDoc = document.querySelector('#location-address');
         let address2Doc = document.querySelector('#location-address2');
         let Amaps = document.querySelector('#a-maps');
-        let maps = 'https://www.google.com/maps/dir/'
+        let maps = "https://www.google.com/maps/dir/"
         // let maps = 'https://www.google.com/maps/dir/-7.3870747,+112.7126789/-7.3139907,112.7232072'
 
         // locationDoc.innerHTML = 'hai'
         function getLocation() {
-            maps = 'https://www.google.com/maps/dir/'
+            maps = "https://www.google.com/maps/dir/"
             if ("geolocation" in navigator) {
                 navigator.geolocation.getCurrentPosition((position) => {
                     let x1 = position.coords.latitude, y1 = position.coords.longitude

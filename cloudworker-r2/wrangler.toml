@@ -1,0 +1,24 @@
+name = "cloudworker-backblaze"
+main = "src/index.ts"
+compatibility_date = "2023-12-01"
+
+account_id = "ed4ec099b7229efa7f10069f4f415dcd" # ← Replace with your Account ID.
+workers_dev = true
+
+
+[env.dev.vars]
+R2LINK = "https://pub-07b8a14f3a664ab4942282fb7054a8c4.r2.dev"
+r2_buckets = [
+  { binding = "R2BUCKET", bucket_name = "test", preview_bucket_name = "testdev"} 
+]
+
+[env.prod.vars]
+R2LINK = "https://pub-042cd08660454da9bd23468fc74cf82f.r2.dev"
+r2_buckets = [
+  { binding = "R2BUCKET", bucket_name = "test", preview_bucket_name = "testdev"} 
+]
+
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "my-database"
+# database_id = ""

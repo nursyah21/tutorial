@@ -14,8 +14,10 @@ export default defineNuxtConfig({
     secretAuth: 'secret',
     brevoKeys: 'brevo',
     imagekitPrivate: 'imagekit',
+    midtransClient: '',
+    midtransServer: '',
     public:{
-      ablyKey: ''
+      ablyKey: '',
     }
   }
 })
